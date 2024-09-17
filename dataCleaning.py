@@ -69,11 +69,14 @@ dataFrame = pd.read_csv('train.csv')
 #print(dataFrame)
 
 # print 10 first enties
-print(dataFrame.head(10))
+#print(dataFrame.head(10))
 
 # using preprocessing
 dataFrame['text'] = dataFrame['text'].apply(preprocess_text)
 
-print(dataFrame.head(10))
+# print 10 first enties
+#print(dataFrame.head(10))
+
+print(dataFrame)
 
 
