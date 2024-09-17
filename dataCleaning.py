@@ -69,7 +69,7 @@ def preprocess_text(text):
 stopwords = load_stopwords('stopwords.txt')
 
 # read data-set
-dataFrame = pd.read_csv('train.csv')
+dataFrame = pd.read_csv('evaluation.csv')
 
 #print(dataFrame)
 
@@ -78,6 +78,8 @@ dataFrame = pd.read_csv('train.csv')
 
 # using preprocessing
 dataFrame['text'] = dataFrame['text'].apply(preprocess_text)
+
+dataFrame.to_csv('processed_evaluation_data.csv', index=False)
 
 # print 10 first enties
 #print(dataFrame.head(10))
