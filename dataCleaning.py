@@ -22,6 +22,8 @@ def preprocess_text(text):
     text = remove_html(text)
 
     # remove URLs
+    # The \S metacharacter matches non-whitespace characters.
+    # https://www.w3schools.com/jsref/jsref_obj_regexp.asp 
     text = re.sub(r'http\S+|https\S+|www\S+', '', text)
 
     # remove emails using cleantext 
@@ -29,6 +31,8 @@ def preprocess_text(text):
     text = cleantext.clean(text, no_emails=True)
 
     # remove hashtags
+    # The \w metacharacter matches word characters.
+    # https://www.w3schools.com/jsref/jsref_regexp_wordchar.asp
     text = re.sub(r'#\w+', '', text)
 
     # remove mentions
@@ -44,7 +48,8 @@ def preprocess_text(text):
     # https://www.geeksforgeeks.org/nlp-expand-contractions-in-text-processing/?ref=header_outind
     text = contractions.fix(text)
 
-    # remove special characters and numbers
+    # remove special characters and numbers 
+    # https://www.w3schools.com/jsref/jsref_regexp_whitespace.asp 
     text = re.sub(r'[^a-z\s]', '', text)
 
     # remove whitespace
