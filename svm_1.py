@@ -12,7 +12,7 @@ vectorized_text = vectorizer.fit_transform(train_text).toarray()
 learning_rate = 0.001
 gamma = 0.01
 lambda_ = 0.01
-num_iterations = 100
+num_iterations = 25
 weight = np.zeros(vectorized_text.shape[1])
 bias = 0
 
