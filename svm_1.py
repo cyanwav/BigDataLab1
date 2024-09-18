@@ -42,7 +42,6 @@ def calculate_accuracy(predictions, true_labels):
 train_svm()
 
 test_data = pd.read_csv('processed_test_data.csv')
-test_text = test_data['text']
 file_score = test_data['score']
 
 predictions = predict_svm(test_data)
