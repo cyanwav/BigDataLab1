@@ -1,6 +1,7 @@
 import pandas as pd
 import ast
 import numpy as np
+import time
 
 train_data = pd.read_csv('processed_train_data.csv')
 train_text = train_data['text']
@@ -71,9 +72,16 @@ def naive_bayes_classifier(file, map_positive, map_negative, total_positive_word
 
     return correct_count / len(file_text)
 
+start_time = time.time()
+
 positive_class_probability, negative_class_probability = calculate_class_probability(train_score)
 map_positive, map_negative, total_positive_words, total_negative_words, total_count = create_maps(train_text, train_score)
 
-test_data = pd.read_csv('processed_test_data.csv')
+test_data = pd.read_csv('processed_evaluation_data.csv')
 result = naive_bayes_classifier(test_data, map_positive, map_negative, total_positive_words, total_negative_words, total_count, positive_class_probability, negative_class_probability)
-print(result)
+
+end_time = time.time()
+duration = end_time - start_time
+
+print(f"Duration: {duration:.2f}")
+print(f"NBC Evaluation Accuracy: {result:.2f}")

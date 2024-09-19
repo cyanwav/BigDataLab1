@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+import time 
 
 train_data = pd.read_csv('processed_train_data.csv')
 train_text = train_data['text']
@@ -39,12 +40,20 @@ def calculate_accuracy(predictions, true_labels):
     accuracy = correct_predictions / len(true_labels)
     return accuracy
 
+start_time = time.time()
 train_svm()
 
-test_data = pd.read_csv('processed_test_data.csv')
+test_data = pd.read_csv('processed_evaluation_data.csv')
 file_score = test_data['score']
 
+
 predictions = predict_svm(test_data)
+end_time = time.time()
+duration = end_time - start_time
+
+duration = end_time - start_time
 true_labels = file_score * 2 - 1
 accuracy = calculate_accuracy(predictions, true_labels)
-print(f"Accuracy: {accuracy:.2f}")
+
+print(f"Duration: {duration:.2f}")
+print(f"SVM Evaluation Accuracy: {accuracy:.2f}")
